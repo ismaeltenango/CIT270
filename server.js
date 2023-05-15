@@ -3,12 +3,12 @@ const bodyParser = require('body-parser');
 const Redis = require('redis');
 const app = express();
 const port = 3000;
-const redisClient = Redis.createClient();
 
+const redisClient = Redis.createClient({url: 'redis://127.0.0.1:6379'});
 app.use(bodyParser.json()); //allow JSON (JvaScriptobject Notation) request
-
+                            
 app.listen(port, ()=> {
-    redisClient.connect();
+    redisClient.connect(); // the API server is trying to connect with redis
     console.log("Listenning on port: " + port);
 });
 
@@ -17,17 +17,18 @@ app.get('/', (req, res) => {
     // res.redirect("https://www.byui.edu");
 })
 
-app.post('/login', (req, res) => {
+app.post('/login', async (req, res) => {
     const loginBody = req.body;
     const userName = loginBody.userName;
     const password = loginBody.password;
-    if (password == "Ismael12345!"){
+    const redisPassword = await redisClient.hGet('users', userName);
+    console.log('Password for ' + userName +" " + redisPassword)
+    if (password != null && password === redisPassword){
         // THIS HAPPENDS IF THE PASWORD DOSES MATCH
         res.send("Welcome " + userName);
     } else {
         // happens hen the password is not correct
-        // res.send("Incorrect Password");
-        res.send(req.body);
+        res.status(401);
+        res.send("Incorrect Password");
     }
-    res.send("Welcome " + userName);
 });
