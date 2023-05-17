@@ -20,13 +20,14 @@ app.get('/', (req, res) => {
 app.post('/login', async (req, res) => {
     const loginBody = req.body;
     const userName = loginBody.userName;
-    const password = loginBody.password;
-    const redisPassword = await redisClient.hGet('users', userName);
+    const password = loginBody.password; //we need to has the password the user gave us
+    const hasedpassword = createHash(password);
+    const redisPassword = await redisClient.hGet('hasedpassword', userName);
     console.log('Password for ' + userName +" " + redisPassword)
     if (password != null && password === redisPassword){
         // THIS HAPPENDS IF THE PASWORD DOSES MATCH
         res.send("Welcome " + userName);
-    } else {
+    } else {s
         // happens hen the password is not correct
         res.status(401);
         res.send("Incorrect Password");
