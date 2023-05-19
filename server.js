@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const Redis = require('redis');
 const app = express();
 const port = 3000;
+const { createHash } = require('node:crypto');
 
 const redisClient = Redis.createClient({url: 'redis://127.0.0.1:6379'});
 app.use(bodyParser.json()); //allow JSON (JvaScriptobject Notation) request
@@ -21,13 +22,15 @@ app.post('/login', async (req, res) => {
     const loginBody = req.body;
     const userName = loginBody.userName;
     const password = loginBody.password; //we need to has the password the user gave us
-    const hasedpassword = createHash(password);
-    const redisPassword = await redisClient.hGet('hasedpassword', userName);
+    const hashedpassword = password==null ? null : createHash('sha3-256').update(password).digest('hex');
+    const redisPassword = password==null ? null : await redisClient.hGet('hashedpasswords', userName);
+    console.log('Hashed Password ' + hashedpassword)
+
     console.log('Password for ' + userName +" " + redisPassword)
-    if (password != null && password === redisPassword){
+    if (redisPassword === hashedpassword){
         // THIS HAPPENDS IF THE PASWORD DOSES MATCH
         res.send("Welcome " + userName);
-    } else {s
+    } else {
         // happens hen the password is not correct
         res.status(401);
         res.send("Incorrect Password");
