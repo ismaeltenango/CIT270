@@ -4,14 +4,23 @@ const Redis = require('redis');
 const app = express();
 const port = 3000;
 const { createHash } = require('node:crypto');
+const https = require('https')
+const fs = require('fs');
 
 const redisClient = Redis.createClient({url: 'redis://127.0.0.1:6379'});
 app.use(bodyParser.json()); //allow JSON (JvaScriptobject Notation) request
-                            
-app.listen(port, ()=> {
-    redisClient.connect(); // the API server is trying to connect with redis
-    console.log("Listenning on port: " + port);
-});
+           
+https.createServer({
+    key: fs.readFileSync('server.key'),
+    cert: fs.readFileSync('server.cert')
+  }, app).listen(3000, () => {
+    console.log('Listening...')
+  })
+
+// app.listen(port, ()=> {
+//     redisClient.connect(); // the API server is trying to connect with redis
+//     console.log("Listenning on port: " + port);
+// });
 
 app.get('/', (req, res) => {
     res.send('Welcome to your server! No demons allowed');

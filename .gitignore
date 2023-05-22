@@ -1,1 +1,4 @@
 login.json
+server.key
+server.cert
+node_modules
