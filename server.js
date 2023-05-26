@@ -23,7 +23,7 @@ https.createServer({
 // });
 
 app.get('/', (req, res) => {
-    res.send('Welcome to your server! No demons allowed');
+    res.send('Welcome to your server! No demons allowed HAHAHAHA');
     // res.redirect("https://www.byui.edu");
 })
 
@@ -38,7 +38,7 @@ app.post('/login', async (req, res) => {
     console.log('Password for ' + userName +" " + redisPassword)
     if (redisPassword === hashedpassword){
         // THIS HAPPENDS IF THE PASWORD DOSES MATCH
-        res.send("Welcome " + userName);
+        res.send("Welcome back" + userName);
     } else {
         // happens hen the password is not correct
         res.status(401);
