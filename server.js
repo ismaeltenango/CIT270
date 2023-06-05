@@ -13,7 +13,7 @@ app.use(bodyParser.json()); //allow JSON (JvaScriptobject Notation) request
 https.createServer({
     key: fs.readFileSync('privkey1.pem'), // this is the private key
     cert: fs.readFileSync('cert1.pem'),
-    cert: fs.readFileSync('fullchain1.pem')  // this is a self-signed certificate
+    chain: fs.readFileSync('fullchain1.pem')  // this is a self-signed certificate
   }, app).listen(3000, () => {
     console.log('Listening...')
   })
