@@ -5,3 +5,5 @@ node_modules
 privkey1.pem
 fullchain1.pem
 cert1.pem
+server.cert
+package.json

@@ -16,7 +16,7 @@ https.createServer({
     chain: fs.readFileSync('fullchain1.pem')  // this is a self-signed certificate
   }, app).listen(3000, () => {
     redisClient.connect(); // the API server is trying to connect with redis
-    console.log('Listening...')
+    console.log('Listening... all the time')
   })
 
 // app.listen(port, ()=> {
