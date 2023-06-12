@@ -11,9 +11,9 @@ const redisClient = Redis.createClient({url: 'redis://127.0.0.1:6379'});
 app.use(bodyParser.json()); //allow JSON (JvaScriptobject Notation) request
            
 https.createServer({
-    key: fs.readFileSync('privkey1.pem'), // this is the private key
-    cert: fs.readFileSync('cert1.pem'),
-    chain: fs.readFileSync('fullchain1.pem')  // this is a self-signed certificate
+    key: fs.readFileSync('/etc/letsencrypt/archive/ismael-tenango.cit270.com/privkey1.pem'), // this is the private key
+    cert: fs.readFileSync('/etc/letsencrypt/archive/ismael-tenango.cit270.com/cert1.pem'),
+    chain: fs.readFileSync('/etc/letsencrypt/archive/ismael-tenango.cit270.com/fullchain1.pem')  // this is a self-signed certificate
   }, app).listen(3000, () => {
     redisClient.connect(); // the API server is trying to connect with redis
     console.log('Listening... all the time')
