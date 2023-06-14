@@ -27,7 +27,8 @@ https.createServer({
 app.get('/', (req, res) => {
     res.send(`
 
-    <head><link rel="icon" type="image/x-icon" href="C:/Users/ismae/GiutHub/CIT270/favicon.ico"></head>
+    <head><link rel="icon" type="image/x-icon" 
+    href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fgiphy.com%2Fexplore%2Fface-stickers&psig=AOvVaw0WWin99kRsra1xIz7-52ny&ust=1686859174363000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCNiP0KDGw_8CFQAAAAAdAAAAABAE"></head>
 
     <button onclick="window.location.href='https://jacob-packer.github.io/wdd130/week-1/index.html';">Jacob Packer</button>
     `)
