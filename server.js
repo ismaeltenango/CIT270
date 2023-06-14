@@ -25,7 +25,13 @@ https.createServer({
 // });
 
 app.get('/', (req, res) => {
-    res.send('Welcome to your server! No demons allowed HAHAHAHA');
+    res.send(`
+
+    <head><link rel="icon" type="image/x-icon" href="favicon (1).ico"></head>
+
+    <button onclick="window.location.href='https://jacob-packer.github.io/wdd130/week-1/index.html';">Jacob Packer</button>
+    `)
+    
     // res.redirect("https://www.byui.edu");
 })
 
