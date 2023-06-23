@@ -5,4 +5,5 @@ node_modules
 privkey1.pem
 fullchain1.pem
 cert1.pem
-package.json
+package-lock.json
+*.pem

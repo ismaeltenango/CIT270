@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const Redis = require('redis');
 const app = express();
-const port = 443;
+const port = 3000;
 const { createHash } = require('node:crypto');
 const https = require('https')
 const fs = require('fs');
@@ -10,19 +10,21 @@ const fs = require('fs');
 const redisClient = Redis.createClient({url: 'redis://127.0.0.1:6379'});
 app.use(bodyParser.json()); //allow JSON (JvaScriptobject Notation) request
            
-https.createServer({
-    key: fs.readFileSync('/etc/letsencrypt/archive/ismael-tenango.cit270.com/privkey1.pem'), // this is the private key
-    cert: fs.readFileSync('/etc/letsencrypt/archive/ismael-tenango.cit270.com/cert1.pem'),
-    ca: fs.readFileSync('/etc/letsencrypt/archive/ismael-tenango.cit270.com/chain1.pem')  // this is a self-signed certificate
-  }, app).listen(port, () => {
-    redisClient.connect(); // the API server is trying to connect with redis
-    console.log('Listening... all the time')
-  })
 
-// app.listen(port, ()=> {
+
+// https.createServer({
+//     key: fs.readFileSync('/etc/letsencrypt/archive/ismael-tenango.cit270.com/privkey1.pem'), // this is the private key
+//     cert: fs.readFileSync('/etc/letsencrypt/archive/ismael-tenango.cit270.com/cert1.pem'),
+//     ca: fs.readFileSync('/etc/letsencrypt/archive/ismael-tenango.cit270.com/chain1.pem')  // this is a self-signed certificate
+//   }, app).listen(port, () => {
 //     redisClient.connect(); // the API server is trying to connect with redis
-//     console.log("Listenning on port: " + port);
-// });
+//     console.log('Listening... all the time')
+//   })
+
+app.listen(port, ()=> {
+    redisClient.connect(); // the API server is trying to connect with redis
+    console.log("Listenning on port: " + port);
+});
 
 app.get('/', (req, res) => {
     res.send(`
