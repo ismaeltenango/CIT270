@@ -1,8 +1,10 @@
 FROM node:alpine 
 
-COPY package.jason ./
+WORKDIR /usr/app
 
-COPY server.js ./
+COPY package.jason /usr/app
+
+COPY server.js /usr/app
 
 #Installs the current package
 RUN nom install
