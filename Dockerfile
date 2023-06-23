@@ -7,7 +7,7 @@ COPY package.json /usr/app
 COPY server.js /usr/app
 
 #Installs the current package
-RUN nom install
+RUN npm install
 
 EXPOSE 3000
 
