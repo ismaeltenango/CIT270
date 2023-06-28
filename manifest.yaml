@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
 # This is the name of my deployment
-  name: cit270NAMEservice
+  name: cit270ismaelservice
 # The specification for our deployment
 spec:
 # How many pods?
@@ -11,18 +11,18 @@ spec:
 # Used to identify the pod we want to talk to  
   selector:
     matchLabels:
-      app: cit270NAMEservice
+      app: cit270ismaelservice
 # Template to create containers
   template:
     metadata:
-      name: cit270NAMEservice
+      name: cit270ismaelservice
       labels:
-        app: cit270NAMEservice
+        app: cit270ismaelservice
 # specification for pod        
     spec:
       containers:
 # name of container      
-      - name: cit270NAMEservice
+      - name: cit270ismaelservice
 # Docker image registry      
         image:    us-docker.pkg.dev/project-table-1/ismael-token-api/image
 # First part of the command to start our API          
@@ -49,7 +49,7 @@ metadata:
   name: stedi-ismael-nodeport
 spec:
   selector:
-    app: cit270NAMEservice # this needs to match the name of your deployment (line 6)
+    app: cit270ismaelservice # this needs to match the name of your deployment (line 6)
   type: NodePort
   ports:
     - port: 80
@@ -69,7 +69,7 @@ metadata:
   name: stedi-ismael-ingress
   annotations:
   # Use this command to find the address name: gcloud compute addresses list 
-    kubernetes.io/ingress.global-static-ip-name: cit270NAME
+    kubernetes.io/ingress.global-static-ip-name: cit270ismael
   # needs to match the name of the ManagedCertificate (line 75)
     networking.gke.io/managed-certificates: stedi-ismael-certificate
 spec:
