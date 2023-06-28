@@ -24,7 +24,7 @@ spec:
 # name of container      
       - name: cit270NAMEservice
 # Docker image registry      
-        image:    #paste here from artifact registry pls :)
+        image:    us-docker.pkg.dev/project-table-1/ismael-token-api/image
 # First part of the command to start our API          
         command: ["npm"]
 # Parameters to add to the command        
