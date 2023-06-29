@@ -58,20 +58,20 @@ spec:
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
-  name: stedi-ismael-certificate
+  name: stedi-ismael-certificate2
 spec:
   domains:
-    - ismael.cit270.com # this needs to be your domain name from DNS
+    - ismael-tenango.cit270.com # this needs to be your domain name from DNS
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: stedi-ismael-ingress
+  name: stedi-ismael-ingress2
   annotations:
   # Use this command to find the address name: gcloud compute addresses list 
     kubernetes.io/ingress.global-static-ip-name: cit270ismael
   # needs to match the name of the ManagedCertificate (line 75)
-    networking.gke.io/managed-certificates: stedi-ismael-certificate
+    networking.gke.io/managed-certificates: stedi-ismael-certificate2
 spec:
   rules:
   - http:

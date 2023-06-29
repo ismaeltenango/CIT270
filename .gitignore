@@ -7,3 +7,4 @@ fullchain1.pem
 cert1.pem
 package-lock.json
 *.pem
+*.txt
