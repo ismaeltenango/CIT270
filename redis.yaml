@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  note: redis-stedi-ismael
+  name: redis-stedi-ismael
 spec:
   selector:
     matchLabels:
