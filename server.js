@@ -7,7 +7,7 @@ const { createHash } = require('node:crypto');
 const https = require('https')
 const fs = require('fs');
 
-const redisClient = Redis.createClient({url: 'redis://default:redis-stedi-ismael:6379'});
+const redisClient = Redis.createClient({url: 'redis://redis-stedi-ismael:6379'});
 app.use(bodyParser.json()); //allow JSON (JvaScriptobject Notation) request
            
 
